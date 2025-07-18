@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema para Produtos</title>
+  <link rel="stylesheet" href="./css/produto.css" />
+  <script src="./produto.js"defer></script>
+</head>
+<body>
+  <header class="menu-container">
+    <h1>Sistema para Produtos</h1>
+    <nav>
+      <a href="../index.html">🏠 Página Inicial</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="cadastrar-produto">
+      <h2>Cadastro de Produto</h2>
+      <form id="formCadastroProduto">
+        <label for="titulo">Titulo do Produto:</label>
+        <input type="text" id="titulo" placeholder="Titulo do Produto" />
+        
+        <label for="descricao">Descrição do Produto:</label>
+        <input type="text" id="descricao" placeholder="Descrição do Produto" />
+        
+        <label for="categoria">Categoria do Produto:</label>
+        <input type="text" id="categoria" placeholder="Categoria do Produto" />
+        
+        <label for="preco">Preço do Produto:</label>
+        <input type="text" id="preco" placeholder="Preço do Produto" />
+        
+        <label for="percentualDesconto">Desconto do Produto:</label>
+        <input type="text" id="percentualDesconto" placeholder="Desconto do Produto" />
+        
+        <label for="estoque">Estoque do Produto:</label>
+        <input type="text" id="estoque" placeholder="Estoque do Produto" />
+        
+        <label for="marca">Marca do Produto:</label>
+        <input type="text" id="marca" placeholder="Marca do Produto" />
+        
+        <label for="imagem">Imagem do Produto:</label>
+        <input type="text" id="imagem" placeholder="Imagem do Produto" />
+        
+        <button type="submit" id="cadProduto">Cadastrar</button>
+      </form>
+      <div id="res-cadastro-produto" class="response"></div>
+    </section>
+
+
+    <section class="atualizar-produto">
+      <h2>Atualizar Produto</h2>
+      <form id="formAtualizarProduto">
+        <label for="atualizar-produto-id">Código do Produto:</label>
+        <input type="text" id="atualizar-produto-id" placeholder="Código do Produto" />
+
+        <label for="atualizar-produto-nome">Nome do Produto:</label>
+        <input type="text" id="atualizar-produto-nome" placeholder="Nome do Produto" />
+
+        <button type="submit" id="atualProduto">Atualizar</button>
+      </form>
+      <div id="res-atualizar-produto" class="response"></div>
+    </section>
+  
+    <section class="listar-produtos">
+      <h2>Lista de Produtos</h2>
+      <button id="lisProduto">Listar</button>
+      <div id="res-lista-produto" class="response"></div>
+    </section>
+
+    <section class="excluir-produto">
+      <h2>Excluir Produto</h2>
+      <form id="formExcluirProduto">
+        <label for="excluir-produto-id">Código do Produto:</label>
+        <input type="text" id="excluir-produto-id" placeholder="Código do Produto" />
+        <button type="submit" id="apagProduto">Apagar</button>
+      </form>
+      <div id="res-excluir-produto" class="response"></div>
+    </section>
+
+  </main>
+</body>
+</html>

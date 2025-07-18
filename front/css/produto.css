@@ -1,0 +1,166 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Corpo da página */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Cabeçalho */
+  header.menu-container {
+    background-color: #3a3a3a;
+    color: #f0f0f0;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  header.menu-container h1 {
+    font-size: 1.8rem;
+  }
+  
+  header.menu-container nav a {
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    background-color: #555;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  header.menu-container nav a:hover {
+    background-color: #777;
+  }
+  
+  /* Container principal */
+  main.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Seções */
+  section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  section h2 {
+    color: #444;
+    margin-bottom: 1rem;
+  }
+  
+  /* Formulários */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form label {
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  form input {
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  /* Botões */
+  button {
+    padding: 0.7rem 1.2rem;
+    background-color: #666;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #444;
+  }
+  
+  /* Mensagens de resposta */
+  .response {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background-color: #eaeaea;
+    border: 1px solid #ccc;
+    color: #333;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 600px) {
+    main.container {
+      padding: 1rem;
+    }
+  
+    header.menu-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  
+    button {
+      width: 100%;
+    }
+  }
+  .tabela-produtos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #2f2f2f;
+    color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+  
+  .tabela-produtos th, .tabela-produtos td {
+    padding: 10px 14px;
+    border: 1px solid #444;
+    text-align: left;
+  }
+  
+  .tabela-produtos th {
+    background-color: #444;
+    font-weight: bold;
+  }
+  
+  .tabela-produtos tr:nth-child(even) {
+    background-color: #3a3a3a;
+  }
+  
+  .tabela-produtos tr:hover {
+    background-color: #555;
+  }
+  
+  .tabela-produtos img {
+    max-height: 40px;
+    border-radius: 4px;
+  }
+    

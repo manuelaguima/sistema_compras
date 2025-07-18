@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema para Compras</title>
+  <link rel="stylesheet" href="./css/compra.css" />
+  <script src="./compra.js" defer></script>
+
+</head>
+<body>
+  <header class="menu-container">
+    <h1>Sistema para Compras</h1>
+    <nav>
+      <a href="../index.html">🏠 Página Inicial</a>
+    </nav>
+  </header>
+
+  <main class="container">
+  
+    <section class="cadastrar-compra">
+      <h2>Cadastro da Compra</h2>
+      <form id="formCadastro">
+        <label for="idUsuario">ID Usuário:</label>
+        <input type="text" id="idUsuario" placeholder="ID Usuário" />
+        <label for="idProduto">ID Produto:</label>
+        <input type="text" id="idProduto" placeholder="ID Produto" />
+        <label for="quantidade">Quantidade:</label>
+        <input type="text" id="quantidade" placeholder="Quantidade" />
+        <label for="dataCompra">Data da compra:</label>
+        <input type="date" id="dataCompra" placeholder="Data da compra" />
+        <label for="precoUnitario">Preço Unitario:</label>
+        <input type="text" id="precoUnitario" placeholder="Preço Unitario" />
+        <label for="descontoAplicado">Desconto Aplicado:</label>
+        <input type="text" id="descontoAplicado" placeholder="Desconto Aplicado" />
+        <label for="formaPagamento">Forma de Pagamento:</label>
+        <input type="text" id="formaPagamento" placeholder="Forma de Pagamento" />
+        <label for="statusCompra">Status da Compra:</label>
+        <input type="text" id="statusCompra" placeholder="Status da Compra" />
+
+        <button type="submit" id="cadFab">Cadastrar</button>
+      </form>
+      <div id="res-cadastro" class="response"></div>
+    </section>
+
+   
+    <section class="atualizar-compra">
+      <h2>Atualizar Compra</h2>
+      <form id="formAtualizar">
+        <label for="atualizar-id">Código da Compra:</label>
+        <input type="text" id="atualizar-id" placeholder="Código da Compra" />
+
+        <label for="atualizar-nome">Nome da Compra:</label>
+        <input type="text" id="atualizar-nome" placeholder="Nome da Compra" />
+
+        <button type="submit" id="atualCompra">Atualizar</button>
+      </form>
+      <div id="res-atualizar" class="response"></div>
+    </section>
+
+
+   
+    <section class="listar-compras">
+      <h2>Lista de Compras</h2>
+      <button id="lisCompra">Listar</button>
+      <div id="res-lista" class="response"></div>
+    </section>
+    
+    <section class="excluir-compra">
+      <h2>Excluir Compra</h2>
+      <form id="formExcluir">
+        <label for="excluir-id">Digite o código da compra:</label><br />
+        <input type="text" id="excluir-id" placeholder="Código da Compra" /><br /><br />
+        <button type="submit" id="apagCompra">Apagar</button>
+      </form>
+      <div id="res-excluir" class="response"></div>
+    </section>
+
+  </main>
+</body>
+</html>

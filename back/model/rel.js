@@ -2,29 +2,26 @@ const Usuario = require('./Usuario')
 const Produto = require('./Produto')
 const Compra = require('./Compra')
 
-Produto.hasMany(Compra,{
+Produto.hasMany(Compra, {
     foreignKey: 'idProduto',
     as: 'produtoCompra',
     onDelete: 'CASCADE'
 })
 
-Compra.belongsTo(Produto,{
+Compra.belongsTo(Produto, {
     foreignKey: 'idProduto',
-    as: 'compraProduto',
-    allowNull: false
+    as: 'compraProduto'
 })
 
-Usuario.hasMany(Compra,{
+Usuario.hasMany(Compra, {
     foreignKey: 'idUsuario',
     as: 'usuariosCompra',
     onDelete: 'CASCADE'
 })
 
-Compra.belongsTo(Usuario,{
+Compra.belongsTo(Usuario, {
     foreignKey: 'idUsuario',
-    as: 'compraUsuario',
-    allowNull: false
+    as: 'compraUsuario'
 })
-
 
 module.exports = { Usuario, Produto, Compra }

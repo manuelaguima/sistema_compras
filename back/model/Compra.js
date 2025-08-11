@@ -1,27 +1,11 @@
 const { DataTypes } = require('sequelize')
-const conn = require('../db/conn')
+const db = require('../db/conn')
 
-const Compra = conn.define('produto',{
-    idCompra: {
+const Compra = db.define('compra', {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
-    },
-    idUsuario: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references:{
-            model: 'usuarios',
-            key: 'id'
-        }
-    },
-    idProduto: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references:{
-            model: 'produtos',
-            key: 'id'
-        }
     },
     quantidade: {
         type: DataTypes.INTEGER,
@@ -29,28 +13,45 @@ const Compra = conn.define('produto',{
     },
     dataCompra: {
         type: DataTypes.DATEONLY,
-        allowNull: false
+        allowNull: true
     },
     precoUnitario: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10,2),
         allowNull: false
     },
     descontoAplicado: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10,2),
         allowNull: false
     },
     precoFinal: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10,2),
         allowNull: false
     },
     formaPagamento: {
-        type: DataTypes.CHAR,
+        type: DataTypes.STRING(100),
         allowNull: false
     },
     statusCompra: {
-        type: DataTypes.CHAR,
+        type: DataTypes.STRING,
         allowNull: false
+    },
+    idUsuario:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'usuarios',
+            key: 'id'
+        }
+    },
+    idProduto:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'produtos',
+            key: 'id'
+        }
     }
+    
 },{
     tableName: 'compras',
     timestamps: false

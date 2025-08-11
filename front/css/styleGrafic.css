@@ -46,60 +46,32 @@ body {
 /* Container principal */
 .container {
     max-width: 900px;
-    margin: 2rem auto; /* Centraliza o container */
+    margin: 2rem auto;
     padding: 2rem;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* Linha divisória */
-hr {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin: 2rem 0;
-}
-
 /* Seções */
 section {
     margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #ccc;
 }
 
 section h2 {
     color: #444;
     margin-bottom: 1rem;
-    text-align: center; /* Centraliza os títulos */
-}
-
-/* Layout de botões e formulários */
-.btn-menu {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-form label {
-    margin-bottom: 0.3rem;
-    font-weight: 600;
-    color: #555;
-}
-
-form input {
-    padding: 0.6rem;
-    margin-bottom: 1rem;
-    border: 1px solid #bbb;
-    border-radius: 6px;
-    font-size: 1rem;
-    background-color: #f9f9f9;
-    color: #333;
 }
 
 /* Botões */
+.button-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
 button {
     padding: 0.7rem 1.2rem;
     background-color: #666;
@@ -109,62 +81,47 @@ button {
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    flex-grow: 1;
 }
 
 button:hover {
     background-color: #444;
 }
 
+/* Contêiner do gráfico */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Altura fixa para o gráfico */
+}
+
 /* Mensagens de resposta */
-.response {
-    margin-top: 1rem;
-    padding: 0.8rem;
+.response-message {
+    padding: 1rem;
     border-radius: 6px;
     font-size: 0.95rem;
     background-color: #eaeaea;
     border: 1px solid #ccc;
     color: #333;
-}
-
-/* Tabela de usuários */
-.tabela-usuarios {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    background-color: #2f2f2f;
-    color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-}
-
-.tabela-usuarios th, .tabela-usuarios td {
-    padding: 12px 15px;
-    border: 1px solid #444;
-    text-align: left;
-}
-
-.tabela-usuarios th {
-    background-color: #444;
-    font-weight: bold;
-}
-
-.tabela-usuarios tr:nth-child(even) {
-    background-color: #3a3a3a;
-}
-
-.tabela-usuarios tr:hover {
-    background-color: #555;
-}
-
-/* Rodapé */
-footer {
+    margin-bottom: 1rem;
     text-align: center;
-    padding: 2rem;
-    background-color: #3a3a3a;
-    color: #f0f0f0;
-    margin-top: 2rem;
+}
+
+.response-message.loading {
+    background-color: #fff3cd;
+    border-color: #ffc107;
+    color: #664d03;
+}
+
+.response-message.error {
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    color: #842029;
+}
+
+.response-message.success {
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+    color: #0f5132;
 }
 
 /* Responsividade */
@@ -179,9 +136,8 @@ footer {
         gap: 1rem;
     }
 
-    .btn-menu {
+    .button-container {
         flex-direction: column;
-        gap: 0.5rem;
     }
 
     button {

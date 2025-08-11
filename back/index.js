@@ -16,10 +16,13 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cors())
 
+app.post('/usuario/lote', usuarioController.cadastrarLote)
+
 app.post('/usuario', usuarioController.cadastrar)
 app.get('/usuario', usuarioController.listar)
 app.put('/usuario/:id', usuarioController.atualizar)
 app.delete('/usuario/:id', usuarioController.apagar)
+// app.get('/usuario/grafico', usuarioController.grafico)
 
 app.post('/produto', produtoController.cadastrar)
 app.get('/produto', produtoController.listar)

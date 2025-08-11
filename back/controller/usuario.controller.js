@@ -6,8 +6,19 @@ const cadastrar = async (req,res)=>{
         const dados = await Usuario.create(valores)
         res.status(200).json(dados)
     }catch(err){
-        console.error('Erro ao cadastrar os dados!',err)
-        res.status(500).json({message: 'Erro ao cadastrar os dados!'})
+        console.error('Erro ao cadastrar os dados!!!!',err)
+        res.status(500).json({message: 'Erro ao cadastrar os dados!!!!'})
+    }
+}
+
+const cadastrarLote = async (req,res)=>{
+    const valores = req.body
+    try{
+        const dados = await Usuario.bulkCreate(valores)
+        res.status(200).json(dados)
+    }catch(err){
+        console.error('Erro ao cadastrar os dados!!!!',err)
+        res.status(500).json({message: 'Erro ao cadastrar os dados!!!!'})
     }
 }
 
@@ -55,12 +66,12 @@ const apagar = async (req,res)=>{
             res.status(404).json({message: 'Usuário não encontrado!'})
         }else{
             await Usuario.destroy({where: { id: idUsuario}})
-            res.status(204).json({message: 'Dados excluídos com sucesso!'})
+            res.status(204).json({message: 'Dados excluídos com sucesso!!!'})
         }    
     }catch(err){
-        console.error('Erro ao apagar os dados!',err)
+        console.error('Erro ao apagar os dados!!!!',err)
         res.status(500).json({message: 'Erro ao apagar os dados!'})
     }
 }
 
-module.exports = { cadastrar, listar, atualizar, apagar }
+module.exports = { cadastrar, listar, atualizar, apagar, cadastrarLote }

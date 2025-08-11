@@ -16,58 +16,33 @@
   </header>
 
   <main class="container">
-
-    
     <section class="cadastrar-usuario">
       <h2>Cadastro do Usuário</h2>
-      <form id="formCadastroUsuario">
-        <label for="usuario-nome">Primeiro Nome:</label>
-        <input type="text" id="usuario-nome" placeholder="Primeiro Nome" />
-        
-        <label for="usuario-sobrenome">Sobrenome:</label>
-        <input type="text" id="usuario-sobrenome" placeholder="Sobrenome" />
-        
-        <label for="usuario-idade">Idade:</label>
-        <input type="number" id="usuario-idade" placeholder="Idade" />
+      <div class="btn-menu">
+        <button id="cadastrarLote">Cadastrar Lote</button>
+        <button id="formUsuario">Formulário Usuário</button>
+        <button onclick="location.href ='graficoUsuario.html'">Gráfico</button>
+      </div>
 
-        <label for="usuario-email">Email:</label>
-        <input type="email" id="usuario-email" placeholder="Email" />
-
-        <label for="usuario-telefone">Telefone:</label>
-        <input type="tel" id="usuario-telefone" placeholder="Telefone" />
-
-        <label for="usuario-endereco">Endereço:</label>
-        <input type="text" id="usuario-endereco" placeholder="Endereço" />
-
-        <label for="usuario-cidade">Cidade:</label>
-        <input type="text" id="usuario-cidade" placeholder="Cidade" />
-        
-        <label for="usuario-estado">Estado:</label>
-        <input type="text" id="usuario-estado" placeholder="Estado" />
-
-        <label for="usuario-nascimento">Data de Nascimento:</label>
-        <input type="date" id="usuario-nascimento" />
-
-        <button type="submit" id="cadUsuario">Cadastrar</button>
-      </form>
-      <div id="res-cadastro-usuario" class="response"></div>
+      <div class="container-usuario" id="resUsuario"></div>
+      <div class="container-lote" id="resLote"></div>
     </section>
 
+    <hr>
 
     <section class="atualizar-usuario">
       <h2>Atualizar Usuário</h2>
       <form id="formAtualizarUsuario">
         <label for="atualizar-usuario-id">Código do Usuário:</label>
         <input type="text" id="atualizar-usuario-id" placeholder="Código do Usuário" />
-
         <label for="atualizar-usuario-nome">Nome do Usuário:</label>
         <input type="text" id="atualizar-usuario-nome" placeholder="Nome do Usuário" />
-
         <button type="submit" id="atualUsuario">Atualizar</button>
       </form>
       <div id="res-atualizar-usuario" class="response"></div>
     </section>
 
+    <hr>
 
     <section class="listar-usuario">
       <h2>Lista de Usuários</h2>
@@ -75,7 +50,8 @@
       <div id="res-lista-usuario" class="response"></div>
     </section>
 
-    
+    <hr>
+
     <section class="excluir-usuario">
       <h2>Excluir Usuário</h2>
       <form id="formExcluirUsuario">
@@ -86,5 +62,7 @@
       <div id="res-excluir-usuario" class="response"></div>
     </section>
   </main>
+
+  <footer>
 </body>
 </html>

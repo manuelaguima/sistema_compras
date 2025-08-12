@@ -2,6 +2,75 @@
 const resExcluirProduto = document.getElementById('res-excluir-produto');
 const apagProduto = document.getElementById('apagProduto');
 
+const cadastrarLote = document.getElementById('cadastrarLote')
+const resLote = document.getElementById('resLote')
+
+cadastrarLote.addEventListener('click', (e)=>{
+  e.preventDefault();
+
+  valores = []
+    fetch('https://dummyjson.com/products')
+    .then(resp => resp.json())
+    .then(dadosDummy => {
+        console.log(dadosDummy.products)
+        console.log('---- antes ----------')
+        // https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#creating-in-bulk
+        dadosDummy.products.forEach(dad => {
+            const val = {
+                titulo: dad.title,
+                descricao: dad.description,
+                categoria: dad.category,
+                preco: dad.price,
+                percentualDesconto: dad.discountPercentage,
+                estoque: dad.stock,
+                marca: dad.brand,
+                imagem: dad.thumbnail
+            }
+            valores.push(val)
+
+            
+
+        })
+        console.log(valores)
+        console.log('-------------')
+
+        fetch(`http://localhost:3000/produto/lote`,{
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(valores)
+        })
+        .then(resp => resp.json())
+        .then(dados => {
+            console.log('Retorno dos dados')
+            console.log('======================')
+            console.log(dados)
+
+            // A tabela vai aqui depois
+
+            // ------------------------------
+            // formatação da tabela dinâmica
+            resLote.innerHTML = ` `
+            resLote.innerHTML += ` 
+                a
+            `
+
+
+        })
+        .catch((err)=>{
+            console.error('Erro ao gravar os dados', err)
+        })
+
+
+            
+
+    })
+    .catch((err)=>{
+        console.error('Não foi possível carrgar os dados',err)
+    })
+})
+
 apagProduto.addEventListener('click', (e) => {
   e.preventDefault();
 

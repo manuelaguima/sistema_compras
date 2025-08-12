@@ -17,6 +17,7 @@ app.use(express.json())
 app.use(cors())
 
 app.post('/usuario/lote', usuarioController.cadastrarLote)
+app.post('/produto/lote', produtoController.cadastrarLote)
 
 app.post('/usuario', usuarioController.cadastrar)
 app.get('/usuario', usuarioController.listar)

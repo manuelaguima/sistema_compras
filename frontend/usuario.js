@@ -8,9 +8,11 @@ let btnExcluir =  document.getElementById('apagUsuario')
 let formUsuario = document.getElementById('formUsuario')
 let resUsuario = document.getElementById('resUsuario')
 
+let btnAtualizar = document.getElementById('atualUsuario')
+
 btnExcluir.addEventListener('click',(e)=>{
     e.preventDefault()
-    let excluirUsuario = document.getElementById('excluir-usuario-id').value
+    let excluirUsuario = Number(document.getElementById('excluir-usuario-id').value)
      fetch(`http://localhost:3000/usuario/${excluirUsuario}`,{
             method: 'DELETE',
             headers: {
@@ -19,8 +21,8 @@ btnExcluir.addEventListener('click',(e)=>{
         })
         .then(dados => {
             let res =  document.getElementById('res-excluir-usuario')
-            res.innerHTML = 
-        })
+            res.innerHTML = 'Dados excluídos com sucesso!'
+    })
 })
 
 cadastrarLote.addEventListener('click', (e)=>{
@@ -130,7 +132,7 @@ formUsuario.addEventListener('click', (e)=>{
         }
 
 
-        fetch(`http://localhost:3000/usuario/lote`, {
+        fetch(`http://localhost:3000/usuario`, {
             method: 'POST',
             headers: { 'Content-Type':'application/json'},
             body: JSON.stringify(valores)
@@ -150,6 +152,33 @@ formUsuario.addEventListener('click', (e)=>{
     })
 
 })
+
+btnAtualizar.addEventListener('click', (e)=>{
+    e.preventDefault()
+
+    let id = document.getElementById('atualizar-usuario-id').value
+    let nome = document.getElementById('atualizar-usuario-nome').value
+
+    const valores = {
+        primeiroNome: nome
+    }
+
+    fetch(`http://localhost:3000/usuario/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type':'application/json'},
+            body: JSON.stringify(valores)
+        })
+        .then(resp => resp.json())
+        .then(dados => {
+            console.log(dados)
+
+            resUsuario.innerHTML += `Usuário atualizado com sucesso`
+        })
+        .catch((err)=>{
+            console.error('Erro ao atualizar os dados', err)
+        })
+})
+
 
 function gerarHeadTabela(){
     let cabecalho = `

@@ -49,6 +49,7 @@ const atualizar = async (req,res)=>{
             dados = await Usuario.findByPk(idUsuario)
             res.status(200).json(dados)
         }else{
+            console.log('Usuário não encontrado')
             res.status(404).json({message: 'Usuário não encontrado!'})
         }
     }catch(err){

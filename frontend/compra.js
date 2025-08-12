@@ -1,18 +1,11 @@
-//apaga a compra
-const resExcluir = document.getElementById('res-excluir');
-const apagCompra = document.getElementById('apagCompra');
+const resExcluir = document.getElementById('res-excluir')
+const btnExcluir = document.getElementById('apagCompra')
+
+let btnAtualizar = document.getElementById('atualCompra')
 
 apagCompra.addEventListener('click', (e) => {
-  e.preventDefault();
-  const id = Number(document.getElementById('excluir-id').value.trim());
-
-  resExcluir.innerHTML = '';
-
-  if (!id) {
-    resExcluir.style.color = '#ff6b6b';
-    resExcluir.textContent = 'Digite um código válido.';
-    return;
-  }
+  e.preventDefault()
+  const id = Number(document.getElementById('excluir-id')).value
 
   fetch(`http://localhost:3000/compra/${id}`, {
     method: 'DELETE',
@@ -20,60 +13,37 @@ apagCompra.addEventListener('click', (e) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((resp) => {
-      if (resp.status === 204) {
-        resExcluir.style.color = '#90ee90';
-        resExcluir.textContent = 'Compra excluída com sucesso!';
-      } else {
-        resExcluir.style.color = '#ff6b6b';
-        resExcluir.textContent = 'Compra não encontrada!';
-      }
-    })
-    .catch((err) => {
-      console.error('Erro ao apagar as compras!', err);
-      resExcluir.style.color = '#ff6b6b';
-      resExcluir.textContent = 'Erro ao excluir. Tente novamente.';
-    });
-});
-
-
-// atualizar a compra
-const resAtualizar = document.getElementById('res-atualizar');
-const atualCompra = document.getElementById('atualCompra');
-
-atualCompra.addEventListener('click', (e) => {
-  e.preventDefault();
-
-  const id = Number(document.getElementById('atualizar-id').value.trim());
-  const nome = document.getElementById('atualizar-nome').value.trim();
-
-  resAtualizar.innerHTML = '';
-
-  if (!id || !nome) {
-    resAtualizar.style.color = '#ff6b6b';
-    resAtualizar.textContent = 'Preencha o código e o nome da compra.';
-    return;
-  }
-
-  fetch(`http://localhost:3000/compra/${id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nome }),
-  })
-    .then((resp) => {
-      if (!resp.ok) throw new Error();
-      return resp.json();
-    })
     .then((dados) => {
-      resAtualizar.style.color = '#90ee90';
-      resAtualizar.innerHTML = `Compra atualizada: <strong>${dados.nome}</strong>`;
+      let res =  document.getElementById('excluir-id')
+            res.innerHTML = 'Compras excluídas com sucesso!'
     })
-    .catch((err) => {
-      console.error('Erro ao atualizar as compras!', err);
-      resAtualizar.style.color = '#ff6b6b';
-      resAtualizar.textContent = 'Erro ao atualizar. Verifique o código.';
-    });
-});
+})
+
+btnAtualizar.addEventListener('click', (e)=>{
+    e.preventDefault()
+
+    let id = document.getElementById('atualizar-id').value
+    let nome = document.getElementById('atualizar-nome').value
+
+    const valores = {
+        primeiroNome: nome
+    }
+
+    fetch(`http://localhost:3000/usuario/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type':'application/json'},
+            body: JSON.stringify(valores)
+        })
+        .then(resp => resp.json())
+        .then(dados => {
+            console.log(dados)
+
+            resUsuario.innerHTML += `Compra atualizada com sucesso`
+        })
+        .catch((err)=>{
+            console.error('Erro ao atualizar os dados', err)
+        })
+})
 
 
 // cadastrar compra 

@@ -22,22 +22,22 @@ const cadastrarLote = async (req,res)=>{
     }
 }
 
-const listar = async (req,res)=>{
-    try{
-        const valores = await Usuario.findAll()
-        res.status(200).json(valores)
-        if(valores){
-        res.status(200).json(valores)
-        console.log(valores)
-         }else{
-        res.status(404).json({message: 'Dados não encontrados'})
-        console.log(valores)
-          }
-    }catch(err){
-        console.error('Erro ao listar os dados!',err)
-        res.status(500).json({message: 'Erro ao listar os dados!'})
+const listar = async (req, res) => {
+    try {
+        const valores = await Usuario.findAll();
+
+        if (valores && valores.length > 0) {
+            console.log(valores);
+            return res.status(200).json(valores);
+        } else {
+            console.log('Nenhum dado encontrado.');
+            return res.status(404).json({ message: 'Dados não encontrados' });
+        }
+    } catch (err) {
+        console.error('Erro ao listar os dados!', err);
+        return res.status(500).json({ message: 'Erro ao listar os dados!' });
     }
-}
+};
 
 const atualizar = async (req,res)=>{
     const idUsuario = req.params.id

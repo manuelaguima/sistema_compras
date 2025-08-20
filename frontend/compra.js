@@ -87,13 +87,11 @@ cadFab.addEventListener('click', (e) => {
       return resp.json();
     })
     .then(dados => {
-      resCadastro.style.color = '#90ee90';
-      resCadastro.innerHTML = `Compra cadastrada com sucesso!</strong>`;
+      resCadastro.innerHTML = `Compra cadastrada com sucesso!</br>`;
     })
     .catch((err) => {
       console.error('Erro ao cadastrar a compra!', err);
-      resCadastro.style.color = '#ff6b6b';
-      resCadastro.textContent = 'Erro ao cadastrar. Tente novamente.';
+      console.log(dataCompra)
     });
 });
 

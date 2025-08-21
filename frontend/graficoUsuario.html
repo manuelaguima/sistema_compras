@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/styleGrafic.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="./progGraficUserAge.js"defer></script>
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gráficos com Chart.js</title>
+  <link rel="stylesheet" href="./css/stylegrafico.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./progGrafico.js" defer></script>
 </head>
 <body>
-    <h1>Gráfico Usuário x Idade</h1>
-    <br>
-    <button id="buscarDados">Buscar</button>
-    <button id="gerarGrafic">Gerar</button>
-    <button onclick="location.href ='./usuario.html'">voltar</button>
+  
+
+  <header class="menu-container">
+   <h1>Gráficos Com Chat.js</h1>
+    <nav>
+      <a href="../index.html">🏠 Página Inicial</a>
+    </nav>
+  </header>
+  <section class="container">
+    <h2>Usuário x Idade</h2>
+    <label for="idIniUser">ID Inicial:</label>
+    <input type="number" id="idIniUser" value="0" min="0" />
+    <label for="idFimUser">ID Final:</label>
+    <input type="number" id="idFimUser" value="9" min="0" />
     <br><br>
-    <canvas id="graficUserAge"></canvas>
+    <button id="gerarGraficoUsuario">Gerar Gráfico Usuário</button>
+    <div class="chart-container">
+      <canvas id="graficoUsuarios"></canvas>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2>Produto x Estoque</h2>
+    <label for="idIniProd">ID Inicial:</label>
+    <input type="number" id="idIniProd" value="0" min="0" />
+    <label for="idFimProd">ID Final:</label>
+    <input type="number" id="idFimProd" value="9" min="0" />
+    <br><br>
+    <button id="gerarGraficoProduto">Gerar Gráfico Produto</button>
+    <div class="chart-container">
+      <canvas id="graficoProdutos"></canvas>
+    </div>
+  </section>
 </body>
 </html>

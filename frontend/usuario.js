@@ -7,6 +7,7 @@ let btnExcluir =  document.getElementById('apagUsuario')
 
 let formUsuario = document.getElementById('formUsuario')
 let resUsuario = document.getElementById('resUsuario')
+let resAtualizar = document.getElementById('res-atualizar-usuario')
 
 let btnAtualizar = document.getElementById('atualUsuario')
 
@@ -52,7 +53,6 @@ cadastrarLote.addEventListener('click', (e)=>{
 
         })
         console.log(valores)
-        console.log('-------------')
 
         fetch(`http://localhost:3000/usuario/lote`,{
             method: 'POST',
@@ -64,13 +64,7 @@ cadastrarLote.addEventListener('click', (e)=>{
         .then(resp => resp.json())
         .then(dados => {
             console.log('Retorno dos dados')
-            console.log('======================')
             console.log(dados)
-
-            // A tabela vai aqui depois
-
-            // ------------------------------
-            // formatação da tabela dinâmica
             resLote.innerHTML = ` `
             resLote.innerHTML += ` 
                 <table class="container-tabela">
@@ -98,7 +92,6 @@ cadastrarLote.addEventListener('click', (e)=>{
 formUsuario.addEventListener('click', (e)=>{
     e.preventDefault()
 
-    // console.log(cadastrarUsuario)
     
     resUsuario.innerHTML = ` `
     resUsuario.innerHTML += ` ${gerarFormulario()}`
@@ -172,7 +165,7 @@ btnAtualizar.addEventListener('click', (e)=>{
         .then(dados => {
             console.log(dados)
 
-            resUsuario.innerHTML += `Usuário atualizado com sucesso`
+            resAtualizar.innerHTML += `Usuário atualizado com sucesso`
         })
         .catch((err)=>{
             console.error('Erro ao atualizar os dados', err)

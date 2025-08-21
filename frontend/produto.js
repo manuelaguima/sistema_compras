@@ -5,71 +5,87 @@ const apagProduto = document.getElementById('apagProduto');
 const cadastrarLote = document.getElementById('cadastrarLote')
 const resLote = document.getElementById('resLote')
 
-cadastrarLote.addEventListener('click', (e)=>{
+cadastrarLote.addEventListener('click', (e) => {
   e.preventDefault();
+  const valores = [];
 
-  valores = []
-    fetch('https://dummyjson.com/products')
+  fetch('https://dummyjson.com/products')
     .then(resp => resp.json())
     .then(dadosDummy => {
-        console.log(dadosDummy.products)
-        console.log('---- antes ----------')
-        // https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#creating-in-bulk
-        dadosDummy.products.forEach(dad => {
-            const val = {
-                titulo: dad.title,
-                descricao: dad.description,
-                categoria: dad.category,
-                preco: dad.price,
-                percentualDesconto: dad.discountPercentage,
-                estoque: dad.stock,
-                marca: dad.brand,
-                imagem: dad.thumbnail
-            }
-            valores.push(val)
+      console.log(dadosDummy.products);
 
-            
+      dadosDummy.products.forEach(dad => {
+        const val = {
+          titulo: dad.title,
+          descricao: dad.description,
+          categoria: dad.category,
+          preco: Number(dad.price), // garante que seja número
+          percentualDesconto: dad.discountPercentage,
+          estoque: dad.stock,
+          marca: dad.brand,
+          imagem: dad.thumbnail
+        };
+        valores.push(val);
+      });
 
-        })
-        console.log(valores)
-        console.log('-------------')
+      console.log('Dados a enviar para o backend:', valores);
 
-        fetch(`http://localhost:3000/produto/lote`,{
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(valores)
-        })
+      fetch(`http://localhost:3000/produto/lote`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(valores)
+      })
         .then(resp => resp.json())
         .then(dados => {
-            console.log('Retorno dos dados')
-            console.log('======================')
-            console.log(dados)
+          console.log('Retorno dos dados salvos:', dados);
 
-            // A tabela vai aqui depois
-
-            // ------------------------------
-            // formatação da tabela dinâmica
-            resLote.innerHTML = ` `
-            resLote.innerHTML += ` 
-                a
-            `
-
-
+          // Gera o HTML da tabela com os dados
+          resLote.innerHTML = `
+            <table class="tabela-produtos">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Título</th>
+                  <th>Descrição</th>
+                  <th>Categoria</th>
+                  <th>Preço</th>
+                  <th>Desconto (%)</th>
+                  <th>Estoque</th>
+                  <th>Marca</th>
+                  <th>Imagem</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${dados.map(prod => `
+                  <tr>
+                    <td>${prod.id}</td>
+                    <td>${prod.titulo}</td>
+                    <td>${prod.descricao}</td>
+                    <td>${prod.categoria}</td>
+                    <td>R$ ${Number(prod.preco).toFixed(2)}</td>
+                    <td>${prod.percentualDesconto}%</td>
+                    <td>${prod.estoque}</td>
+                    <td>${prod.marca}</td>
+                    <td><img src="${prod.imagem}" alt="${prod.titulo}" height="40" /></td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          `;
         })
-        .catch((err)=>{
-            console.error('Erro ao gravar os dados', err)
-        })
-
-
-            
-
+        .catch(err => {
+          console.error('Erro ao gravar os dados', err);
+          resLote.innerHTML = '<p style="color: red;">Erro ao salvar os produtos.</p>';
+        });
     })
-    .catch((err)=>{
-        console.error('Não foi possível carrgar os dados',err)
-    })
-})
+    .catch(err => {
+      console.error('Erro ao carregar os dados do DummyJSON', err);
+      resLote.innerHTML = '<p style="color: red;">Erro ao buscar produtos da API Dummy.</p>';
+    });
+});
+
 
 apagProduto.addEventListener('click', (e) => {
   e.preventDefault();
@@ -272,7 +288,7 @@ fetch('http://localhost:3000/produto')
         <td>${p.titulo}</td>
         <td>${p.descricao}</td>
         <td>${p.categoria}</td>
-        <td>R$ ${p.preco.toFixed(2)}</td>
+        <td>R$ ${p.preco}</td>
         <td>${p.percentualDesconto}%</td>
         <td>${p.estoque}</td>
         <td>${p.marca}</td>

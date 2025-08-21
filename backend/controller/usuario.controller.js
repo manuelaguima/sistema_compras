@@ -75,4 +75,42 @@ const apagar = async (req,res)=>{
     }
 }
 
-module.exports = { cadastrar, listar, atualizar, apagar, cadastrarLote }
+const { Op } = require('sequelize');
+
+const listarUsuariosGrafico = async (req, res) => {
+  try {
+    let { idIni, idFim } = req.query;
+
+    idIni = Number(idIni) || 0;
+    idFim = Number(idFim) || idIni + 9;
+
+    // Limite de 10 IDs no intervalo
+    if (idFim - idIni >= 10) idFim = idIni + 9;
+
+    const usuarios = await Usuario.findAll({
+      where: {
+        id: {
+          [Op.between]: [idIni, idFim],
+        }
+      },
+      attributes: ['primeiroNome', 'sobrenome', 'idade'],
+      limit: 10
+    });
+
+    if (!usuarios || usuarios.length === 0) {
+      return res.status(404).json({ message: 'Nenhum usuário encontrado.' });
+    }
+
+    return res.status(200).json(usuarios);
+  } catch (err) {
+    console.error('Erro ao listar usuários:', err);
+    return res.status(500).json({ message: 'Erro interno ao buscar usuários.' });
+  }
+};
+
+module.exports = {
+  listarUsuariosGrafico,
+};
+
+
+module.exports = { cadastrar, listar, atualizar, apagar, cadastrarLote, listarUsuariosGrafico }

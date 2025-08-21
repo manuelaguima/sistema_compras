@@ -47,14 +47,14 @@ const atualizar = async (req,res)=>{
 }
 
 const apagar = async (req,res)=>{
-    const idCompra = req.params.id
-    console.log(idCompra)
+    const id = req.params.id
+    console.log(id)
     try{
-        const valor = await Compra.findByPk(idCompra)
+        const valor = await Compra.findByPk(id)
         if(valor == null){
             res.status(404).json({message: 'Compra não encontrado!'})
         }else{
-            await Compra.destroy({where: { idCompra: idCompra}})
+            await Compra.destroy({where: { id: id}})
             res.status(204).json({message: 'Dados excluídos com sucesso!'})
         }    
     }catch(err){

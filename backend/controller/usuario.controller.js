@@ -24,20 +24,20 @@ const cadastrarLote = async (req,res)=>{
 
 const listar = async (req, res) => {
     try {
-        const valores = await Usuario.findAll();
+        const valores = await Usuario.findAll()
 
         if (valores && valores.length > 0) {
-            console.log(valores);
-            return res.status(200).json(valores);
+            console.log(valores)
+            return res.status(200).json(valores)
         } else {
-            console.log('Nenhum dado encontrado.');
-            return res.status(404).json({ message: 'Dados não encontrados' });
+            console.log('Nenhum dado encontrado.')
+            return res.status(404).json({ message: 'Dados não encontrados' })
         }
     } catch (err) {
-        console.error('Erro ao listar os dados!', err);
-        return res.status(500).json({ message: 'Erro ao listar os dados!' });
+        console.error('Erro ao listar os dados!', err)
+        return res.status(500).json({ message: 'Erro ao listar os dados!' })
     }
-};
+}
 
 const atualizar = async (req,res)=>{
     const idUsuario = req.params.id
@@ -75,17 +75,17 @@ const apagar = async (req,res)=>{
     }
 }
 
-const { Op } = require('sequelize');
+const { Op } = require('sequelize')
 
 const listarUsuariosGrafico = async (req, res) => {
   try {
-    let { idIni, idFim } = req.query;
+    let { idIni, idFim } = req.query
 
-    idIni = Number(idIni) || 0;
-    idFim = Number(idFim) || idIni + 9;
+    idIni = Number(idIni) || 0
+    idFim = Number(idFim) || idIni + 9
 
-    // Limite de 10 IDs no intervalo
-    if (idFim - idIni >= 10) idFim = idIni + 9;
+    // Limite de 10 
+    if (idFim - idIni >= 10) idFim = idIni + 9
 
     const usuarios = await Usuario.findAll({
       where: {
@@ -95,22 +95,17 @@ const listarUsuariosGrafico = async (req, res) => {
       },
       attributes: ['primeiroNome', 'sobrenome', 'idade'],
       limit: 10
-    });
+    })
 
     if (!usuarios || usuarios.length === 0) {
-      return res.status(404).json({ message: 'Nenhum usuário encontrado.' });
+      return res.status(404).json({ message: 'Nenhum usuário encontrado.' })
     }
 
-    return res.status(200).json(usuarios);
+    return res.status(200).json(usuarios)
   } catch (err) {
-    console.error('Erro ao listar usuários:', err);
-    return res.status(500).json({ message: 'Erro interno ao buscar usuários.' });
+    console.error('Erro ao listar usuários:', err)
+    return res.status(500).json({ message: 'Erro interno ao buscar usuários.' })
   }
-};
-
-module.exports = {
-  listarUsuariosGrafico,
-};
-
+}
 
 module.exports = { cadastrar, listar, atualizar, apagar, cadastrarLote, listarUsuariosGrafico }

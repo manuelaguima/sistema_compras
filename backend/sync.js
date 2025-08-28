@@ -1,5 +1,5 @@
 const conn = require('./db/conn')
-const { Usuario, Compra, Produto } = require('./models/rel')
+const { Usuario, Compra, Produto } = require('./model/rel')
 
 async function SyncDatabase() {
     try{

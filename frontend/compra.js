@@ -8,9 +8,9 @@ let lisCompra = document.getElementById('lisCompra')
 let btnAtualizar = document.getElementById('atualCompra')
 
 apagCompra.addEventListener('click', (e) => {
-  e.preventDefault();
+  e.preventDefault()
 
-  const idCompra = document.getElementById('id-excluir').value;
+  const idCompra = document.getElementById('id-excluir').value
 
   fetch(`http://localhost:3000/compra/${idCompra}`, {
     method: 'DELETE',
@@ -20,17 +20,17 @@ apagCompra.addEventListener('click', (e) => {
   })
     .then(resp => {
       if (resp.status === 204) {
-        resExcluir.innerHTML = `Compra excluída com sucesso!`;
+        resExcluir.innerHTML = `Compra excluída com sucesso!`
       } else {
-        resExcluir.innerHTML = `Erro ao excluir. Código: ${resp.status}`;
+        resExcluir.innerHTML = `Erro ao excluir. Código: ${resp.status}`
         console.log(idCompra)
       }
     })
     .catch(err => {
-      console.error('Erro ao excluir a compra!', err);
-      resExcluir.innerHTML = `Erro na requisição. Veja o console para mais detalhes.`;
-    });
-});
+      console.error('Erro ao excluir a compra!', err)
+      resExcluir.innerHTML = `Erro na requisição. Veja o console para mais detalhes.`
+    })
+})
 
 btnAtualizar.addEventListener('click', (e) => {
   e.preventDefault()
@@ -59,11 +59,11 @@ btnAtualizar.addEventListener('click', (e) => {
 
 
 // cadastrar compra 
-const resCadastro = document.getElementById('res-cadastro');
+const resCadastro = document.getElementById('res-cadastro')
 const cadFab = document.getElementById('cadFab')
 
 cadFab.addEventListener('click', (e) => {
-  e.preventDefault();
+  e.preventDefault()
 
   const idUsuario = Number(document.getElementById('idUsuario').value)
   const idProduto = Number(document.getElementById('idProduto').value)
@@ -75,7 +75,7 @@ cadFab.addEventListener('click', (e) => {
   const formaPagamento = document.getElementById('formaPagamento').value
   const statusCompra = document.getElementById('statusCompra').value
 
-  resCadastro.innerHTML = '';
+  resCadastro.innerHTML = ''
 
   const valores = {
     idUsuario,
@@ -95,65 +95,65 @@ cadFab.addEventListener('click', (e) => {
     body: JSON.stringify(valores),
   })
     .then(resp => {
-      if (!resp.ok) throw new Error();
-      return resp.json();
+      if (!resp.ok) throw new Error()
+      return resp.json()
     })
     .then(dados => {
-      resCadastro.innerHTML = `Compra cadastrada com sucesso!</br>`;
+      resCadastro.innerHTML = `Compra cadastrada com sucesso!</br>`
     })
     .catch((err) => {
-      console.error('Erro ao cadastrar a compra!', err);
+      console.error('Erro ao cadastrar a compra!', err)
       console.log(dataCompra)
-    });
-});
+    })
+})
 
 
 // listar compra 
 
 lisCompra.addEventListener('click', (e) => {
   e.preventDefault()
-  resLista.innerHTML = '';
+  resLista.innerHTML = ''
   fetch('http://localhost:3000/compra')
     .then((resp) => {
-      if (!resp.ok) throw new Error();
-      return resp.json();
+      if (!resp.ok) throw new Error()
+      return resp.json()
     })
     .then((dados) => {
       if (dados.length === 0) {
-        resLista.innerHTML = 'Nenhuma compra encontrada.';
-        return;
+        resLista.innerHTML = 'Nenhuma compra encontrada.'
+        return
       }
 
-      const lista = document.createElement('ul');
+      const lista = document.createElement('ul')
 
 
       dados.forEach((item) => {
-        const li = document.createElement('li');
+        const li = document.createElement('li')
         li.innerHTML = `
           <strong>Código:</strong> ${item.id} <br>
           <strong>Nome:</strong> ${item.quantidade}
           <hr>
-        `;
-        lista.appendChild(li);
-      });
+        `
+        lista.appendChild(li)
+      })
 
-      resLista.appendChild(lista);
+      resLista.appendChild(lista)
     })
     .catch((err) => {
-      console.error('Erro ao listar as compras!', err);
-      resLista.innerHTML = 'Erro ao listar as compras. Tente novamente.';
-    });
-});
+      console.error('Erro ao listar as compras!', err)
+      resLista.innerHTML = 'Erro ao listar as compras. Tente novamente.'
+    })
+})
 
 fetch('http://localhost:3000/compra')
   .then(resp => {
-    if (!resp.ok) throw new Error();
-    return resp.json();
+    if (!resp.ok) throw new Error()
+    return resp.json()
   })
   .then(dados => {
     if (dados.length === 0) {
-      resLista.innerHTML = 'Nenhuma compra encontrada.';
-      return;
+      resLista.innerHTML = 'Nenhuma compra encontrada.'
+      return
     }
 
     let tabela = `
@@ -165,7 +165,7 @@ fetch('http://localhost:3000/compra')
           </tr>
         </thead>
         <tbody>
-    `;
+    `
 
     dados.forEach(c => {
       tabela += `
@@ -173,13 +173,13 @@ fetch('http://localhost:3000/compra')
           <td>${c.idCompra}</td>
           <td>${c.nome}</td>
         </tr>
-      `;
-    });
+      `
+    })
 
     tabela += `</tbody></table>`
     resLista.innerHTML = tabela
   })
   .catch(err => {
-    console.error('Erro ao listar as compras!', err);
+    console.error('Erro ao listar as compras!', err)
     resLista.innerHTML = 'Erro ao listar as compras. Tente novamente.'
   })

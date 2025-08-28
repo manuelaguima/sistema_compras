@@ -1,49 +1,49 @@
-let chartUsuarios = null;
-let chartProdutos = null;
+let chartUsuarios = null
+let chartProdutos = null
 
 document.getElementById('gerarGraficoUsuario').addEventListener('click', () => {
-  const idIni = Number(document.getElementById('idIniUser').value);
-  const idFim = Number(document.getElementById('idFimUser').value);
+  const idIni = Number(document.getElementById('idIniUser').value)
+  const idFim = Number(document.getElementById('idFimUser').value)
 
   fetch('https://dummyjson.com/users')
     .then(resp => {
-      if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
-      return resp.json();
+      if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`)
+      return resp.json()
     })
     .then(data => {
-      const users = data.users;  // array vindo da chave "users"
-      const slice = users.slice(idIni, idFim + 1).slice(0, 10);
-      const labels = slice.map(u => `${u.firstName} ${u.lastName}`);
-      const values = slice.map(u => u.age);
-      renderChart('graficoUsuarios', chartUsuarios, labels, values, 'Idade');
-      chartUsuarios = window.lastChart;
+      const users = data.users  
+      const slice = users.slice(idIni, idFim + 1).slice(0, 10)
+      const labels = slice.map(u => `${u.firstName} ${u.lastName}`)
+      const values = slice.map(u => u.age)
+      renderChart('graficoUsuarios', chartUsuarios, labels, values, 'Idade')
+      chartUsuarios = window.lastChart
     })
-    .catch(err => console.error('Erro ao buscar usuários:', err));
-});
+    .catch(err => console.error('Erro ao buscar usuários:', err))
+})
 
 document.getElementById('gerarGraficoProduto').addEventListener('click', () => {
-  const idIni = Number(document.getElementById('idIniProd').value);
-  const idFim = Number(document.getElementById('idFimProd').value);
+  const idIni = Number(document.getElementById('idIniProd').value)
+  const idFim = Number(document.getElementById('idFimProd').value)
 
   fetch('https://dummyjson.com/products')
     .then(resp => {
-      if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
-      return resp.json();
+      if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`)
+      return resp.json()
     })
     .then(data => {
-      const products = data.products;  // array vindo da chave "products"
-      const slice = products.slice(idIni, idFim + 1).slice(0, 10);
-      const labels = slice.map(p => p.title);
-      const values = slice.map(p => p.stock);
-      renderChart('graficoProdutos', chartProdutos, labels, values, 'Estoque');
-      chartProdutos = window.lastChart;
+      const products = data.products 
+      const slice = products.slice(idIni, idFim + 1).slice(0, 10)
+      const labels = slice.map(p => p.title)
+      const values = slice.map(p => p.stock)
+      renderChart('graficoProdutos', chartProdutos, labels, values, 'Estoque')
+      chartProdutos = window.lastChart
     })
-    .catch(err => console.error('Erro ao buscar produtos:', err));
-});
+    .catch(err => console.error('Erro ao buscar produtos:', err))
+})
 
 function renderChart(canvasId, oldChart, labels, data, yLabel) {
-  const ctx = document.getElementById(canvasId);
-  if (oldChart) oldChart.destroy();
+  const ctx = document.getElementById(canvasId)
+  if (oldChart) oldChart.destroy()
   window.lastChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -62,5 +62,5 @@ function renderChart(canvasId, oldChart, labels, data, yLabel) {
         y: { beginAtZero: true }
       }
     }
-  });
+  })
 }
